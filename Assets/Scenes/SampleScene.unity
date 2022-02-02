@@ -811,7 +811,7 @@ MonoBehaviour:
   _board: {fileID: 2018580723}
   _boardPrefab: {fileID: 1493732697067662547, guid: 0bb8871295c16d54bb6532025a6fb792, type: 3}
   _cellPrefab: {fileID: 7702524854713776279, guid: fe3038fc5d751a447a31aa4fc3cc63d7, type: 3}
-  _offsetBetweenCells: 0.1
+  _offsetBetweenCells: 0.125
 --- !u!1 &1077601167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,8 +1629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6918f388d868cd9439f4f8f7c9c013b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amountOfRows: 4
-  _amountOfColumns: 4
+  _amountOfRows: 6
+  _amountOfColumns: 6
 --- !u!4 &2018580724
 Transform:
   m_ObjectHideFlags: 0
