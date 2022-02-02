@@ -12,6 +12,7 @@ namespace TwentyFortyEight.PlayField.Visual
             _boardVisual = boardVisual;
             
             tileMover.OnMove += HandleMove;
+            tileMover.OnMerge += HandleMerge;
         }
 
 
@@ -25,6 +26,12 @@ namespace TwentyFortyEight.PlayField.Visual
             cellToMoveFrom.Value = null;
 
             tileToMove.Transform.position = cellToMoveTo.Transform.position;
+        }
+        private void HandleMerge((int, int) tileToMergeIntoCoordinates, (int, int) mergedTileCoordinates, 
+            int valueAfterMerge)
+        {
+            _boardVisual[tileToMergeIntoCoordinates.Item1, tileToMergeIntoCoordinates.Item2].Value.UpdateValue(valueAfterMerge);
+            _boardVisual[mergedTileCoordinates.Item1, mergedTileCoordinates.Item2].Value.Destroy();
         }
     }
 }

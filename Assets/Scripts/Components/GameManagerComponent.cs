@@ -7,6 +7,7 @@ namespace TwentyFortyEight
     {
         [SerializeField] private BoardComponent _board;
         [SerializeField] private TileSpawnerComponent _tileSpawner;
+        [SerializeField] private TileMoverComponent _tileMover;
         
         
         public GameManager GameManager { get; private set; }
@@ -14,7 +15,7 @@ namespace TwentyFortyEight
 
         private void Awake()
         {
-            GameManager = new GameManager(_board.Board, _tileSpawner.TileSpawner);
+            GameManager = new GameManager(_board.Board, _tileSpawner.TileSpawner, _tileMover.TileMover);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace TwentyFortyEight
     public interface IObjectMover
     {
         event Action<(int, int), (int, int)> OnMove;
+        event Action<(int, int), (int, int), int> OnMerge;
+        event Action AnyTileMoved;
         void Move(Direction direction, IIndexable<IContainer<IContainer<int>>> objects);
     }
 }

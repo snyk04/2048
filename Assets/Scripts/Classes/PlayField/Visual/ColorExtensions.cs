@@ -5,36 +5,44 @@ namespace TwentyFortyEight.PlayField.Visual
 {
     public static class ColorExtensions
     {
-        private static readonly Color ColorFor2 = new Color(238/255f, 228/255f, 218/255f);
-        private static readonly Color ColorFor4 = new Color(237/255f, 224/255f, 200/255f);
-        private static readonly Color ColorFor8 = new Color(242/255f, 177/255f, 121/255f);
-        private static readonly Color ColorFor16 = new Color(245/255f, 149/255f, 99/255f);
-        private static readonly Color ColorFor32 = new Color(246/255f, 124/255f, 96/255f);
-        private static readonly Color ColorFor64 = new Color(246/255f, 94/255f, 59/255f);
-        private static readonly Color ColorFor128 = new Color(237/255f, 207/255f, 115/255f);
-        private static readonly Color ColorFor256 = new Color(237/255f, 204/255f, 98/255f);
-        private static readonly Color ColorFor512 = new Color(237/255f, 200/255f, 80/255f);
-        private static readonly Color ColorFor1024 = new Color(237/255f, 197/255f, 63/255f);
-        private static readonly Color ColorFor2048 = new Color(237/255f, 194/255f, 45/255f);
+        private static readonly Color TileColorFor2 = new Color32(238, 228, 218, 255);
+        private static readonly Color TileColorFor4 = new Color32(237, 224, 200, 255);
+        private static readonly Color TileColorFor8 = new Color32(242, 177, 121, 255);
+        private static readonly Color TileColorFor16 = new Color32(245, 149, 99, 255);
+        private static readonly Color TileColorFor32 = new Color32(246, 124, 96, 255);
+        private static readonly Color TileColorFor64 = new Color32(246, 94, 59, 255);
+        private static readonly Color TileColorFor128 = new Color32(237, 207, 115, 255);
+        private static readonly Color TileColorFor256 = new Color32(237, 204, 98, 255);
+        private static readonly Color TileColorFor512 = new Color32(237, 200, 80, 255);
+        private static readonly Color TileColorFor1024 = new Color32(237, 197, 63, 255);
+        private static readonly Color TileColorFor2048 = new Color32(237, 194, 45, 255);
+        
+        private static readonly Color TileTextColorForLessThan8 = new Color32(119, 110, 101, 255);
+        private static readonly Color TileTextColorForMoreThan8 = new Color32(249, 246, 242, 255);
         
 
-        public static Color GetColorByNumber(int number)
+        // TODO : Maybe move it to dictionary?
+        public static Color GetTileColorByNumber(int number)
         {
             return number switch
             {
-                2 => ColorFor2,
-                4 => ColorFor4,
-                8 => ColorFor8,
-                16 => ColorFor16,
-                32 => ColorFor32,
-                64 => ColorFor64,
-                128 => ColorFor128,
-                256 => ColorFor256,
-                512 => ColorFor512,
-                1024 => ColorFor1024,
-                2048 => ColorFor2048,
+                2 => TileColorFor2,
+                4 => TileColorFor4,
+                8 => TileColorFor8,
+                16 => TileColorFor16,
+                32 => TileColorFor32,
+                64 => TileColorFor64,
+                128 => TileColorFor128,
+                256 => TileColorFor256,
+                512 => TileColorFor512,
+                1024 => TileColorFor1024,
+                2048 => TileColorFor2048,
                 _ => throw new ArgumentOutOfRangeException()
             };
+        }
+        public static Color GetTileTextColorByNumber(int number)
+        {
+            return number < 8 ? TileTextColorForLessThan8 : TileTextColorForMoreThan8;
         }
     }
 }

@@ -28,6 +28,7 @@ namespace TwentyFortyEight.PlayField.Logic
             }
 
             var random = new Random();
+            // TODO : Possibility to place tile in one cell
             for (int i = 0; i < tilesToSpawn; i++)
             {
                 (int, int) coordinates = freeCells[random.Next(freeCells.Count)];

@@ -25,12 +25,15 @@ namespace TwentyFortyEight.PlayField.Visual
         private void SpawnTile((int, int) coordinates, int value)
         {
             CellVisual cell = _boardVisual[coordinates.Item1, coordinates.Item2];
-            GameObject tile = Object.Instantiate(_tilePrefab, cell.Transform.position, Quaternion.identity, cell.Transform);
-            cell.Value = tile.GetComponent<TileVisualComponent>().TileVisual;
-
-            // TODO : GAVNO
-            tile.GetComponentInChildren<TextMeshPro>().text = value.ToString();
-            tile.GetComponent<SpriteRenderer>().color = ColorExtensions.GetColorByNumber(value);
+            TileVisual tile = Object.Instantiate(
+                _tilePrefab,
+                cell.Transform.position,
+                Quaternion.identity,
+                cell.Transform
+                ).GetComponent<TileVisualComponent>().TileVisual;
+            cell.Value = tile;
+            
+            tile.UpdateValue(value);
         }
     }
 }
