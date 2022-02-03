@@ -24,10 +24,5 @@ namespace TwentyFortyEight.PlayField.Visual
             _text.color = ColorExtensions.GetTileTextColorByNumber(value);
             _spriteRenderer.color = ColorExtensions.GetTileColorByNumber(value);
         }
-        // TODO : Maybe object shouldn't destroy itself?
-        public void Destroy()
-        {
-            Object.Destroy(Transform.gameObject);
-        }
     }
 }

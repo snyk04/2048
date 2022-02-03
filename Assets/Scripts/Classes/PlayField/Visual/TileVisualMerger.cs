@@ -1,4 +1,5 @@
 ﻿using TwentyFortyEight.Common;
+using UnityEngine;
 
 namespace TwentyFortyEight.PlayField.Visual
 {
@@ -17,7 +18,7 @@ namespace TwentyFortyEight.PlayField.Visual
             int valueAfterMerge)
         {
             _boardVisual[tileToMergeIntoCoordinates.Item1, tileToMergeIntoCoordinates.Item2].Value.UpdateValue(valueAfterMerge);
-            _boardVisual[mergedTileCoordinates.Item1, mergedTileCoordinates.Item2].Value.Destroy();
+            Object.Destroy(_boardVisual[mergedTileCoordinates.Item1, mergedTileCoordinates.Item2].Value.Transform.gameObject);
         }
     }
 }
