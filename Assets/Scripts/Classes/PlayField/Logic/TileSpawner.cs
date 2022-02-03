@@ -35,18 +35,20 @@ namespace TwentyFortyEight.PlayField.Logic
             }
 
             var random = new Random();
-            // TODO : Possibility to place tile in one cell
             for (int i = 0; i < tilesToSpawn; i++)
             {
-                (int, int) coordinates = freeCells[random.Next(freeCells.Count)];
+                int cellIndex = random.Next(freeCells.Count);
+                (int, int) coordinates = freeCells[cellIndex];
+                freeCells.RemoveAt(cellIndex);
+                
                 int tileValue = random.NextDouble() > OpportunityOf4ToBeSpawned ? 2 : 4;
                 SpawnTile(coordinates, tileValue, _board);
             }
         }
-        private void SpawnTile((int, int) coordinates, int value, IIndexable<IContainer<IContainer<int>>> boarrd)
+        private void SpawnTile((int, int) coordinates, int value, IIndexable<IContainer<IContainer<int>>> board)
         {
             IContainer<int> tile = new Tile(value);
-            boarrd[coordinates.Item1, coordinates.Item2].Value = tile;
+            board[coordinates.Item1, coordinates.Item2].Value = tile;
             OnSpawn?.Invoke(coordinates, tile);
         }
     }
