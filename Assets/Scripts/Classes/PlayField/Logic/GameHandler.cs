@@ -5,6 +5,8 @@ namespace TwentyFortyEight.PlayField.Logic
 {
     public class GameHandler : IGameHandler
     {
+        private const int AmountOfTilesToSpawnAtStart = 2;
+        
         public event Action OnGameStart;
 
         public IIndexable<IContainer<IContainer<int>>> Board { get; private set; }
@@ -22,7 +24,7 @@ namespace TwentyFortyEight.PlayField.Logic
 
             OnGameStart?.Invoke();
 
-            TileSpawner.SpawnAtRandomPosition(2);
+            TileSpawner.SpawnAtRandomPosition(AmountOfTilesToSpawnAtStart);
             TileMover.AnyTileMoved += () => TileSpawner.SpawnAtRandomPosition();
         }
         public void Move(Direction direction)
