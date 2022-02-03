@@ -6,41 +6,52 @@ namespace TwentyFortyEight.PlayField.Logic
     public class TileMover : IObjectMover
     {
         public event Action<(int, int), (int, int)> OnMove;
-        public event Action<(int, int), (int, int), int> OnMerge;
-        public event Action AnyTileMoved; 
+        public event Action AnyTileMoved;
+
+        private readonly IIndexable<IContainer<IContainer<int>>> _board;
+        private readonly IObjectMerger<int> _tileMerger;
 
 
-        public void Move(Direction direction, IIndexable<IContainer<IContainer<int>>> objects)
+        public TileMover(IIndexable<IContainer<IContainer<int>>> board, IObjectMerger<int> tileMerger)
+        {
+            _board = board;
+            _tileMerger = tileMerger;
+        }
+        
+        
+        public void Move(Direction direction)
         {
             switch (direction)
             {
                 case Direction.Up:
-                    MoveUp(objects);
+                    MoveUp(_board);
                     break;
                 case Direction.Right:
-                    MoveRight(objects);
+                    MoveRight(_board);
                     break;
                 case Direction.Down:
-                    MoveDown(objects);
+                    MoveDown(_board);
                     break;
                 case Direction.Left:
-                    MoveLeft(objects);
+                    MoveLeft(_board);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
         }
-        private void MoveLeft(IIndexable<IContainer<IContainer<int>>> objects)
+        
+        // TODO : Refactor this shit
+        private void MoveLeft(IIndexable<IContainer<IContainer<int>>> board)
         {
             bool movePerformed = false;
             
-            for (int i = 0; i < objects.GetLength(0); i++)
+            for (int i = 0; i < board.GetLength(0); i++)
             {
                 int firstFreePosition = 0;
                 (int, int) lastTileCoordinates = (-1, -1);
-                for (int j = 0; j < objects.GetLength(1); j++)
+                for (int j = 0; j < board.GetLength(1); j++)
                 {
-                    if (objects[i, j].Value == null)
+                    if (board[i, j].Value == null)
                     {
                         continue;
                     }
@@ -48,17 +59,17 @@ namespace TwentyFortyEight.PlayField.Logic
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (i, j)
                         && AreTilesMergeable(
-                            objects[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
-                            objects[i, j].Value))
+                            board[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
+                            board[i, j].Value))
                     {
-                        MergeTiles(lastTileCoordinates, (i, j), objects);
+                        _tileMerger.Merge(lastTileCoordinates, (i, j));
                         movePerformed = true;
                         continue;
                     }
                     
                     if (firstFreePosition != j)
                     {
-                        MoveTile(objects, (i, j), (i, firstFreePosition));
+                        MoveTile(board, (i, j), (i, firstFreePosition));
                         movePerformed = true;
                         lastTileCoordinates = (i, firstFreePosition);
                         firstFreePosition += 1;
@@ -75,17 +86,17 @@ namespace TwentyFortyEight.PlayField.Logic
                 AnyTileMoved?.Invoke();
             }
         }
-        private void MoveRight(IIndexable<IContainer<IContainer<int>>> objects)
+        private void MoveRight(IIndexable<IContainer<IContainer<int>>> board)
         {
             bool movePerformed = false;
 
-            for (int i = 0; i < objects.GetLength(0); i++)
+            for (int i = 0; i < board.GetLength(0); i++)
             {
-                int firstFreePosition = objects.GetLength(1) - 1;
+                int firstFreePosition = board.GetLength(1) - 1;
                 (int, int) lastTileCoordinates = (-1, -1);
-                for (int j = objects.GetLength(1) - 1; j >= 0; j--)
+                for (int j = board.GetLength(1) - 1; j >= 0; j--)
                 {
-                    if (objects[i, j].Value == null)
+                    if (board[i, j].Value == null)
                     {
                         continue;
                     }
@@ -93,17 +104,17 @@ namespace TwentyFortyEight.PlayField.Logic
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (i, j)
                         && AreTilesMergeable(
-                            objects[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
-                            objects[i, j].Value))
+                            board[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
+                            board[i, j].Value))
                     {
-                        MergeTiles(lastTileCoordinates, (i, j), objects);
+                        _tileMerger.Merge(lastTileCoordinates, (i, j));
                         movePerformed = true;
                         continue;
                     }
                     
                     if (firstFreePosition != j)
                     {
-                        MoveTile(objects, (i, j), (i, firstFreePosition));
+                        MoveTile(board, (i, j), (i, firstFreePosition));
                         movePerformed = true;
                         lastTileCoordinates = (i, firstFreePosition);
                         firstFreePosition -= 1;
@@ -120,17 +131,17 @@ namespace TwentyFortyEight.PlayField.Logic
                 AnyTileMoved?.Invoke();
             }
         }
-        private void MoveDown(IIndexable<IContainer<IContainer<int>>> objects)
+        private void MoveDown(IIndexable<IContainer<IContainer<int>>> board)
         {
             bool movePerformed = false;
 
-            for (int i = 0; i < objects.GetLength(1); i++)
+            for (int i = 0; i < board.GetLength(1); i++)
             {
-                int firstFreePosition = objects.GetLength(0) - 1;
+                int firstFreePosition = board.GetLength(0) - 1;
                 (int, int) lastTileCoordinates = (-1, -1);
-                for (int j = objects.GetLength(0) - 1; j >= 0; j--)
+                for (int j = board.GetLength(0) - 1; j >= 0; j--)
                 {
-                    if (objects[j, i].Value == null)
+                    if (board[j, i].Value == null)
                     {
                         continue;
                     }
@@ -138,17 +149,17 @@ namespace TwentyFortyEight.PlayField.Logic
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (j, i)
                         && AreTilesMergeable(
-                            objects[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
-                            objects[j, i].Value))
+                            board[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
+                            board[j, i].Value))
                     {
-                        MergeTiles(lastTileCoordinates, (j, i), objects);
+                        _tileMerger.Merge(lastTileCoordinates, (j, i));
                         movePerformed = true;
                         continue;
                     }
                     
                     if (firstFreePosition != j)
                     {
-                        MoveTile(objects, (j, i), (firstFreePosition, i));
+                        MoveTile(board, (j, i), (firstFreePosition, i));
                         movePerformed = true;
                         lastTileCoordinates = (firstFreePosition, i);
                         firstFreePosition -= 1;
@@ -165,16 +176,16 @@ namespace TwentyFortyEight.PlayField.Logic
                 AnyTileMoved?.Invoke();
             }
         }
-        private void MoveUp(IIndexable<IContainer<IContainer<int>>> objects)
+        private void MoveUp(IIndexable<IContainer<IContainer<int>>> board)
         {
             bool movePerformed = false;
-            for (int i = 0; i < objects.GetLength(0); i++)
+            for (int i = 0; i < board.GetLength(0); i++)
             {
                 int firstFreePosition = 0;
                 (int, int) lastTileCoordinates = (-1, -1);
-                for (int j = 0; j < objects.GetLength(1); j++)
+                for (int j = 0; j < board.GetLength(1); j++)
                 {
-                    if (objects[j, i].Value == null)
+                    if (board[j, i].Value == null)
                     {
                         continue;
                     }
@@ -182,17 +193,17 @@ namespace TwentyFortyEight.PlayField.Logic
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (j, i)
                         && AreTilesMergeable(
-                            objects[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
-                            objects[j, i].Value))
+                            board[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
+                            board[j, i].Value))
                     {
-                        MergeTiles(lastTileCoordinates, (j, i), objects);
+                        _tileMerger.Merge(lastTileCoordinates, (j, i));
                         movePerformed = true;
                         continue;
                     }
                     
                     if (firstFreePosition != j)
                     {
-                        MoveTile(objects, (j, i), (firstFreePosition, i));
+                        MoveTile(board, (j, i), (firstFreePosition, i));
                         movePerformed = true;
                         lastTileCoordinates = (firstFreePosition, i);
                         firstFreePosition += 1;
@@ -221,20 +232,9 @@ namespace TwentyFortyEight.PlayField.Logic
             OnMove?.Invoke(moveFrom, moveTo);
         }
         
-        // TODO : Move methods to single responsibility class/interface
         private bool AreTilesMergeable(IContainer<int> tileToMergeInto, IContainer<int> mergedTile)
         {
-            // TODO : Move it to IContainer<T> interface as bool AreEqual()
             return tileToMergeInto.Value == mergedTile.Value;
-        }
-        private void MergeTiles((int, int) tileToMergeIntoCoordinates, (int, int) mergedTileCoordinates,
-            IIndexable<IContainer<IContainer<int>>> board)
-        {
-            IContainer<int> tileToMergeInto = board[tileToMergeIntoCoordinates.Item1, tileToMergeIntoCoordinates.Item2].Value;
-            tileToMergeInto.Value *= 2;
-            board[mergedTileCoordinates.Item1, mergedTileCoordinates.Item2].Value = null;
-            
-            OnMerge?.Invoke(tileToMergeIntoCoordinates, mergedTileCoordinates, tileToMergeInto.Value);
         }
     }
 }

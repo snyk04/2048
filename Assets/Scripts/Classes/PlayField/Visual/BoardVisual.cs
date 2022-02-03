@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace TwentyFortyEight.PlayField.Visual
 {
-    // TODO : Move board creation logic to single responsibility class
     public class BoardVisual : IIndexable<CellVisual>
     {
         private readonly GameObject _boardPrefab;

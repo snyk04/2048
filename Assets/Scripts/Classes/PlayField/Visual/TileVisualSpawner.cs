@@ -1,8 +1,6 @@
-﻿using TMPro;
-using TwentyFortyEight.Common;
+﻿using TwentyFortyEight.Common;
 using TwentyFortyEight.PlayField.Logic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TwentyFortyEight.PlayField.Visual
 {
@@ -13,27 +11,25 @@ namespace TwentyFortyEight.PlayField.Visual
         
         
         
-        public TileVisualSpawner(TileSpawner tileSpawner, GameObject tilePrefab, IIndexable<CellVisual> boardVisual)
+        public TileVisualSpawner(GameObject tilePrefab, IIndexable<CellVisual> boardVisual)
         {
             _tilePrefab = tilePrefab;
             _boardVisual = boardVisual;
-
-            tileSpawner.OnSpawn += SpawnTile;
         }
 
 
-        private void SpawnTile((int, int) coordinates, int value)
+        public void SpawnTile((int, int) coordinates, IContainer<int> tile)
         {
-            CellVisual cell = _boardVisual[coordinates.Item1, coordinates.Item2];
-            TileVisual tile = Object.Instantiate(
+            CellVisual cellVisual = _boardVisual[coordinates.Item1, coordinates.Item2];
+            TileVisual tileVisual = Object.Instantiate(
                 _tilePrefab,
-                cell.Transform.position,
+                cellVisual.Transform.position,
                 Quaternion.identity,
-                cell.Transform
+                cellVisual.Transform
                 ).GetComponent<TileVisualComponent>().TileVisual;
-            cell.Value = tile;
+            cellVisual.Value = tileVisual;
             
-            tile.UpdateValue(value);
+            tileVisual.UpdateValue(tile.Value);
         }
     }
 }
