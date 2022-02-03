@@ -17,8 +17,8 @@ namespace TwentyFortyEight.PlayField.Visual
         public void Merge((int, int) tileToMergeIntoCoordinates, (int, int) mergedTileCoordinates, 
             int valueAfterMerge)
         {
-            _boardVisual[tileToMergeIntoCoordinates.Item1, tileToMergeIntoCoordinates.Item2].Value.UpdateValue(valueAfterMerge);
-            Object.Destroy(_boardVisual[mergedTileCoordinates.Item1, mergedTileCoordinates.Item2].Value.Transform.gameObject);
+            _boardVisual[tileToMergeIntoCoordinates].Value.UpdateValue(valueAfterMerge);
+            Object.Destroy(_boardVisual[mergedTileCoordinates].Value.Transform.gameObject);
         }
     }
 }

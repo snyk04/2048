@@ -20,7 +20,7 @@ namespace TwentyFortyEight.PlayField.Visual
 
         public void SpawnTile((int, int) coordinates, IContainer<int> tile)
         {
-            CellVisual cellVisual = _boardVisual[coordinates.Item1, coordinates.Item2];
+            CellVisual cellVisual = _boardVisual[coordinates];
             TileVisual tileVisual = Object.Instantiate(
                 _tilePrefab,
                 cellVisual.Transform.position,

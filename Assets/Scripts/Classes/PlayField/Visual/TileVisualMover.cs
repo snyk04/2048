@@ -15,8 +15,8 @@ namespace TwentyFortyEight.PlayField.Visual
 
         public void Move((int, int) moveFrom, (int, int) moveTo)
         {
-            CellVisual cellToMoveFrom = _boardVisual[moveFrom.Item1, moveFrom.Item2];
-            CellVisual cellToMoveTo = _boardVisual[moveTo.Item1, moveTo.Item2];
+            CellVisual cellToMoveFrom = _boardVisual[moveFrom];
+            CellVisual cellToMoveTo = _boardVisual[moveTo];
             TileVisual tileToMove = cellToMoveFrom.Value;
             
             cellToMoveTo.Value = tileToMove;

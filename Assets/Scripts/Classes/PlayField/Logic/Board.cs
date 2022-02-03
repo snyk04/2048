@@ -17,6 +17,11 @@ namespace TwentyFortyEight.PlayField.Logic
             get => _cells[i, j];
             set => _cells[i, j] = value;
         }
+        public IContainer<IContainer<int>> this[(int, int) coordinates]
+        {
+            get => _cells[coordinates.Item1, coordinates.Item2];
+            set => _cells[coordinates.Item1, coordinates.Item2] = value;
+        }
 
 
         public int GetLength(int dimension)

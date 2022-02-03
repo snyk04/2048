@@ -58,9 +58,7 @@ namespace TwentyFortyEight.PlayField.Logic
 
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (i, j)
-                        && AreTilesMergeable(
-                            board[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
-                            board[i, j].Value))
+                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[i, j].Value))
                     {
                         _tileMerger.Merge(lastTileCoordinates, (i, j));
                         movePerformed = true;
@@ -103,9 +101,7 @@ namespace TwentyFortyEight.PlayField.Logic
 
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (i, j)
-                        && AreTilesMergeable(
-                            board[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
-                            board[i, j].Value))
+                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[i, j].Value))
                     {
                         _tileMerger.Merge(lastTileCoordinates, (i, j));
                         movePerformed = true;
@@ -148,9 +144,7 @@ namespace TwentyFortyEight.PlayField.Logic
 
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (j, i)
-                        && AreTilesMergeable(
-                            board[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
-                            board[j, i].Value))
+                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[j, i].Value))
                     {
                         _tileMerger.Merge(lastTileCoordinates, (j, i));
                         movePerformed = true;
@@ -192,9 +186,7 @@ namespace TwentyFortyEight.PlayField.Logic
 
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (j, i)
-                        && AreTilesMergeable(
-                            board[lastTileCoordinates.Item1, lastTileCoordinates.Item2].Value,
-                            board[j, i].Value))
+                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[j, i].Value))
                     {
                         _tileMerger.Merge(lastTileCoordinates, (j, i));
                         movePerformed = true;
@@ -223,8 +215,8 @@ namespace TwentyFortyEight.PlayField.Logic
         
         private void MoveTile(IIndexable<IContainer<IContainer<int>>> board, (int, int) moveFrom, (int, int) moveTo)
         {
-            IContainer<IContainer<int>> cellToMoveFrom = board[moveFrom.Item1, moveFrom.Item2];
-            IContainer<IContainer<int>> cellToMoveTo = board[moveTo.Item1, moveTo.Item2];
+            IContainer<IContainer<int>> cellToMoveFrom = board[moveFrom];
+            IContainer<IContainer<int>> cellToMoveTo = board[moveTo];
             IContainer<int> tileToMove = cellToMoveFrom.Value;
             cellToMoveTo.Value = tileToMove;
             cellToMoveFrom.Value = null;

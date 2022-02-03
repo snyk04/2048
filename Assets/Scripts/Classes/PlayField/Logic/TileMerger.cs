@@ -18,9 +18,9 @@ namespace TwentyFortyEight.PlayField.Logic
         
         public void Merge((int, int) tileToMergeIntoCoordinates, (int, int) mergedTileCoordinates)
         {
-            IContainer<int> tileToMergeInto = _board[tileToMergeIntoCoordinates.Item1, tileToMergeIntoCoordinates.Item2].Value;
+            IContainer<int> tileToMergeInto = _board[tileToMergeIntoCoordinates].Value;
             tileToMergeInto.Value *= 2;
-            _board[mergedTileCoordinates.Item1, mergedTileCoordinates.Item2].Value = null;
+            _board[mergedTileCoordinates].Value = null;
             
             OnMerge?.Invoke(tileToMergeIntoCoordinates, mergedTileCoordinates, tileToMergeInto.Value);
         }

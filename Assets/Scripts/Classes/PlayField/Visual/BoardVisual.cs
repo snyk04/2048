@@ -44,6 +44,11 @@ namespace TwentyFortyEight.PlayField.Visual
             get => _cellVisuals[i, j];
             set => _cellVisuals[i, j] = value;
         }
+        public CellVisual this[(int, int) coordinates]
+        {
+            get => _cellVisuals[coordinates.Item1, coordinates.Item2];
+            set => _cellVisuals[coordinates.Item1, coordinates.Item2] = value;
+        }
 
         
         public int GetLength(int dimension)

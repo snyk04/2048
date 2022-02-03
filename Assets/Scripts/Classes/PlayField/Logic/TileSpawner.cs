@@ -48,7 +48,7 @@ namespace TwentyFortyEight.PlayField.Logic
         private void SpawnTile((int, int) coordinates, int value, IIndexable<IContainer<IContainer<int>>> board)
         {
             IContainer<int> tile = new Tile(value);
-            board[coordinates.Item1, coordinates.Item2].Value = tile;
+            board[coordinates].Value = tile;
             OnSpawn?.Invoke(coordinates, tile);
         }
     }
