@@ -25,7 +25,7 @@ namespace TwentyFortyEight.PlayField.Logic
         {
             IContainer<int> tileToMergeInto = board[tileToMergeIntoCoordinates].Value;
             int valueAfterMerge = tileToMergeInto.Value * 2;
-            tileToMergeInto.Value *= valueAfterMerge;
+            tileToMergeInto.Value = valueAfterMerge;
             board[mergedTileCoordinates].Value = null;
 
             if (valueAfterMerge == _victoryNumber)
