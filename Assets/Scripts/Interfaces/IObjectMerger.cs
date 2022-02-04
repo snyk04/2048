@@ -6,6 +6,7 @@ namespace TwentyFortyEight.PlayField.Logic
     public interface IObjectMerger<T>
     {
         event Action<(int, int), (int, int), T> OnMerge;
+        event Action OnVictoryNumberReach;
         bool IsInCheckMode { get; set; }
         
         void Merge(IIndexable<IContainer<IContainer<T>>> board, (int, int) tileToMergeIntoCoordinates,

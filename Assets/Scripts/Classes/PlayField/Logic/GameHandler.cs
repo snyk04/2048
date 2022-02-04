@@ -6,6 +6,7 @@ namespace TwentyFortyEight.PlayField.Logic
     public class GameHandler : IGameHandler
     {
         private const int AmountOfTilesToSpawnAtStart = 2;
+        private const int VictoryNumber = 2048;
         
         public event Action OnGameStart;
 
@@ -18,7 +19,7 @@ namespace TwentyFortyEight.PlayField.Logic
         public void StartGame(int amountOfRows, int amountOfColumns)
         {
             Board = new Board(amountOfRows, amountOfColumns);
-            TileMerger = new TileMerger(Board);
+            TileMerger = new TileMerger(Board, VictoryNumber);
             TileMover = new TileMover(Board, TileMerger);
             TileSpawner = new TileSpawner(Board);
 

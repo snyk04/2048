@@ -8,6 +8,7 @@ namespace TwentyFortyEight
         private readonly GameObject _victoryInterface;
         private readonly GameObject _gameOverInterface;
         
+        
         public GameStopHandler(IGameHandler gameHandler, GameObject victoryInterface, GameObject gameOverInterface)
         {
             _gameHandler = gameHandler;
@@ -21,13 +22,13 @@ namespace TwentyFortyEight
         private void Prepare()
         {
             _gameHandler.TileMover.OnNoMovesLeft += HandleGameOver;
-            // _gameHandler.TileMerger.OnMaxNumberMerged += HandleVictory;
+            _gameHandler.TileMerger.OnVictoryNumberReach += HandleVictory;
         }
 
-        // private void HandleVictory()
-        // {
-        //     _victoryInterface.SetActive(true);
-        // }
+        private void HandleVictory()
+        {
+            _victoryInterface.SetActive(true);
+        }
         private void HandleGameOver()
         {
             _gameOverInterface.SetActive(true);
