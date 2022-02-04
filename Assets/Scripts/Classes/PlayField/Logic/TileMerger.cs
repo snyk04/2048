@@ -6,9 +6,9 @@ namespace TwentyFortyEight.PlayField.Logic
     public class TileMerger : IObjectMerger<int>
     {
         public event Action<(int, int), (int, int), int> OnMerge;
+        public bool IsInCheckMode { get; set; }
         
         private readonly IIndexable<IContainer<IContainer<int>>> _board;
-
 
         public TileMerger(IIndexable<IContainer<IContainer<int>>> board)
         {
@@ -16,13 +16,21 @@ namespace TwentyFortyEight.PlayField.Logic
         }
 
         
+        public void Merge(IIndexable<IContainer<IContainer<int>>> board,
+            (int, int) tileToMergeIntoCoordinates, (int, int) mergedTileCoordinates)
+        {
+            IContainer<int> tileToMergeInto = board[tileToMergeIntoCoordinates].Value;
+            tileToMergeInto.Value *= 2;
+            board[mergedTileCoordinates].Value = null;
+
+            if (!IsInCheckMode)
+            {
+                OnMerge?.Invoke(tileToMergeIntoCoordinates, mergedTileCoordinates, tileToMergeInto.Value);
+            }
+        }
         public void Merge((int, int) tileToMergeIntoCoordinates, (int, int) mergedTileCoordinates)
         {
-            IContainer<int> tileToMergeInto = _board[tileToMergeIntoCoordinates].Value;
-            tileToMergeInto.Value *= 2;
-            _board[mergedTileCoordinates].Value = null;
-            
-            OnMerge?.Invoke(tileToMergeIntoCoordinates, mergedTileCoordinates, tileToMergeInto.Value);
+            Merge(_board, tileToMergeIntoCoordinates, mergedTileCoordinates);
         }
     }
 }

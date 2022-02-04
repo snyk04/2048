@@ -7,5 +7,6 @@
         
         
         int GetLength(int dimension);
+        IIndexable<T> Copy();
     }
 }

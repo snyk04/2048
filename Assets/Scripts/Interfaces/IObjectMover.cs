@@ -6,7 +6,9 @@ namespace TwentyFortyEight
     public interface IObjectMover
     {
         event Action<(int, int), (int, int)> OnMove;
-        event Action AnyTileMoved;
+        event Action AnyMovePerformed;
+        event Action OnNoMovesLeft;
+        bool IsInCheckMode { get; set; }
         
         
         void Move(Direction direction);

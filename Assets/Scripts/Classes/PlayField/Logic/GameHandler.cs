@@ -25,7 +25,7 @@ namespace TwentyFortyEight.PlayField.Logic
             OnGameStart?.Invoke();
 
             TileSpawner.SpawnAtRandomPosition(AmountOfTilesToSpawnAtStart);
-            TileMover.AnyTileMoved += () => TileSpawner.SpawnAtRandomPosition();
+            TileMover.AnyMovePerformed += () => TileSpawner.SpawnAtRandomPosition();
         }
         public void Move(Direction direction)
         {

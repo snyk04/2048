@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace TwentyFortyEight.PlayField.Visual
 {
+    // TODO : Maybe move instantiating of objects to another class?
     public class BoardVisual : IIndexable<CellVisual>
     {
         private readonly GameObject _boardPrefab;
@@ -38,6 +39,10 @@ namespace TwentyFortyEight.PlayField.Visual
             CreateBoard(amountOfRows, amountOfColumns);
             CreateCells(amountOfRows, amountOfColumns);
         }
+        private BoardVisual(CellVisual[,] cellVisuals)
+        {
+            _cellVisuals = cellVisuals;
+        }
 
         public CellVisual this[int i, int j]
         {
@@ -54,6 +59,10 @@ namespace TwentyFortyEight.PlayField.Visual
         public int GetLength(int dimension)
         {
             return _cellVisuals.GetLength(dimension);
+        }
+        public IIndexable<CellVisual> Copy()
+        {
+            return new BoardVisual(_cellVisuals);
         }
 
         private void CreateBoard(int amountOfRows, int amountOfColumns)

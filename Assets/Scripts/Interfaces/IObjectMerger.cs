@@ -1,12 +1,15 @@
 ﻿using System;
+using TwentyFortyEight.Common;
 
 namespace TwentyFortyEight.PlayField.Logic
 {
-    public interface IObjectMerger<out T>
+    public interface IObjectMerger<T>
     {
         event Action<(int, int), (int, int), T> OnMerge;
-
+        bool IsInCheckMode { get; set; }
         
+        void Merge(IIndexable<IContainer<IContainer<T>>> board, (int, int) tileToMergeIntoCoordinates,
+            (int, int) mergedTileCoordinates);
         void Merge((int, int) tileToMergeIntoCoordinates, (int, int) mergedTileCoordinates);
     }
 }
