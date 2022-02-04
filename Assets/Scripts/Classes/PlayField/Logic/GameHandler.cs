@@ -14,6 +14,7 @@ namespace TwentyFortyEight.PlayField.Logic
         public IObjectMerger<int> TileMerger { get; private set; }
         public IObjectMover TileMover { get; private set; }
         public IObjectSpawner<IContainer<int>> TileSpawner { get; private set; }
+        public ITracker<int> ScoreTracker { get; private set; }
 
 
         public void StartGame(int amountOfRows, int amountOfColumns)
@@ -22,11 +23,13 @@ namespace TwentyFortyEight.PlayField.Logic
             TileMerger = new TileMerger(Board, VictoryNumber);
             TileMover = new TileMover(Board, TileMerger);
             TileSpawner = new TileSpawner(Board);
+            ScoreTracker = new ScoreTracker();
 
             OnGameStart?.Invoke();
 
-            TileSpawner.SpawnAtRandomPosition(AmountOfTilesToSpawnAtStart);
+            TileMerger.OnMerge += (_, __, mergedValue) => ScoreTracker.Add(mergedValue);
             TileMover.AnyMovePerformed += () => TileSpawner.SpawnAtRandomPosition();
+            TileSpawner.SpawnAtRandomPosition(AmountOfTilesToSpawnAtStart);
         }
         public void Move(Direction direction)
         {
