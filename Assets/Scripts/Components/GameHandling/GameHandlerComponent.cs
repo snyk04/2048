@@ -1,5 +1,4 @@
-﻿using TwentyFortyEight.PlayField.Logic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TwentyFortyEight.GameHandling
 {
@@ -17,10 +16,6 @@ namespace TwentyFortyEight.GameHandling
         public void StartGame()
         {
             GameHandler.StartGame(4, 4);
-        }
-        public void Move(int direction)
-        {
-            GameHandler.Move((Direction) direction);
         }
     }
 }
