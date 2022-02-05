@@ -1,7 +1,7 @@
 ﻿using System;
 using TwentyFortyEight.Common;
 
-namespace TwentyFortyEight.Game
+namespace TwentyFortyEight.TileInteraction.Logic
 {
     public class TileMerger : IObjectMerger<int>
     {

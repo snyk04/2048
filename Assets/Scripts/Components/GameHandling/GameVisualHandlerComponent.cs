@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TwentyFortyEight.Game
+namespace TwentyFortyEight.GameHandling
 {
     public class GameVisualHandlerComponent : MonoBehaviour
     {

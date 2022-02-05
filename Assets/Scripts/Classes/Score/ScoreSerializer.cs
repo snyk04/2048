@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using TwentyFortyEight.Common;
 using UnityEngine;
 
-namespace TwentyFortyEight.Game
+namespace TwentyFortyEight.Score
 {
     public class ScoreSerializer : ISerializer<int>
     {

@@ -1,7 +1,7 @@
 ﻿using TwentyFortyEight.PlayField.Logic;
 using UnityEngine;
 
-namespace TwentyFortyEight.Game
+namespace TwentyFortyEight.GameHandling
 {
     // TODO : Make board size configurable in UI
     public class GameHandlerComponent : MonoBehaviour

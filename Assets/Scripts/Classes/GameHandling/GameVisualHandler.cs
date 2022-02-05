@@ -1,8 +1,9 @@
 ﻿using TwentyFortyEight.Common;
+using TwentyFortyEight.TileInteraction.Visual;
 using TwentyFortyEight.PlayField.Visual;
 using UnityEngine;
 
-namespace TwentyFortyEight.Game
+namespace TwentyFortyEight.GameHandling
 {
     public class GameVisualHandler
     {

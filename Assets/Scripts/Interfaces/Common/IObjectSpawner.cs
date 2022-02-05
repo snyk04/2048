@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TwentyFortyEight.Game
+namespace TwentyFortyEight.Common
 {
     public interface IObjectSpawner<out T>
     {

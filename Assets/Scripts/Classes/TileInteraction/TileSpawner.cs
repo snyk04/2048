@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TwentyFortyEight.Common;
 using TwentyFortyEight.PlayField.Logic;
 
-namespace TwentyFortyEight.Game
+namespace TwentyFortyEight.TileInteraction.Logic
 {
     public class TileSpawner : IObjectSpawner<IContainer<int>>
     {

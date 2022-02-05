@@ -1,8 +1,10 @@
 ﻿using System;
 using TwentyFortyEight.Common;
+using TwentyFortyEight.Score;
+using TwentyFortyEight.TileInteraction.Logic;
 using TwentyFortyEight.PlayField.Logic;
 
-namespace TwentyFortyEight.Game
+namespace TwentyFortyEight.GameHandling
 {
     public class GameHandler : IGameHandler
     {

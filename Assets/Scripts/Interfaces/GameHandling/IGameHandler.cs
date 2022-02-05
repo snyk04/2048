@@ -2,7 +2,7 @@
 using TwentyFortyEight.Common;
 using TwentyFortyEight.PlayField.Logic;
 
-namespace TwentyFortyEight.Game
+namespace TwentyFortyEight.GameHandling
 {
     public interface IGameHandler
     {
