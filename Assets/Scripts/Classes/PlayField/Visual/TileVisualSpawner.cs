@@ -1,11 +1,16 @@
-﻿using TwentyFortyEight.Common;
-using TwentyFortyEight.PlayField.Logic;
+﻿using DG.Tweening;
+using TwentyFortyEight.Common;
 using UnityEngine;
 
 namespace TwentyFortyEight.PlayField.Visual
 {
     public class TileVisualSpawner
     {
+        private const float PunchScale = 0.25f;
+        private const float PunchDuration = 0.1f;
+        private const int PunchVibrato = 0;
+        private const float PunchElasticity = 0;
+        
         private readonly GameObject _tilePrefab;
         private readonly IIndexable<CellVisual> _boardVisual;
         
@@ -27,6 +32,11 @@ namespace TwentyFortyEight.PlayField.Visual
                 Quaternion.identity,
                 cellVisual.Transform
                 ).GetComponent<TileVisualComponent>().TileVisual;
+            
+            tileVisual.Transform.DOPunchScale(new Vector3(PunchScale, PunchScale, PunchScale),
+                PunchDuration,
+                PunchVibrato,
+                PunchElasticity);
             cellVisual.Value = tileVisual;
             
             tileVisual.UpdateValue(tile.Value);

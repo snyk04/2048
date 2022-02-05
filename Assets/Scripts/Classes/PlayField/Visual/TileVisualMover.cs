@@ -1,9 +1,12 @@
-﻿using TwentyFortyEight.Common;
+﻿using DG.Tweening;
+using TwentyFortyEight.Common;
 
 namespace TwentyFortyEight.PlayField.Visual
 {
     public class TileVisualMover
     {
+        public const float MoveDuration = 0.1f;
+        
         private readonly IIndexable<CellVisual> _boardVisual;
 
 
@@ -22,7 +25,8 @@ namespace TwentyFortyEight.PlayField.Visual
             cellToMoveTo.Value = tileToMove;
             cellToMoveFrom.Value = null;
 
-            tileToMove.Transform.position = cellToMoveTo.Transform.position;
+            tileToMove.Transform.parent = cellToMoveTo.Transform;
+            tileToMove.Transform.DOMove(cellToMoveTo.Transform.position, MoveDuration);
         }
     }
 }

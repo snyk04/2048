@@ -6,23 +6,22 @@ namespace TwentyFortyEight.PlayField.Visual
     public class TileVisual
     {
         public Transform Transform { get; }
-        
-        private readonly TextMeshPro _text;
-        private readonly SpriteRenderer _spriteRenderer;
+        public SpriteRenderer SpriteRenderer { get; }
+        public TextMeshPro Text { get; }
         
         public TileVisual(Transform transform, TextMeshPro text, SpriteRenderer spriteRenderer)
         {
             Transform = transform;
-            _text = text;
-            _spriteRenderer = spriteRenderer;
+            SpriteRenderer = spriteRenderer;
+            Text = text;
         }
 
 
         public void UpdateValue(int value)
         {
-            _text.text = value.ToString();
-            _text.color = ColorExtensions.GetTileTextColorByNumber(value);
-            _spriteRenderer.color = ColorExtensions.GetTileColorByNumber(value);
+            Text.text = value.ToString();
+            Text.color = ColorExtensions.GetTileTextColorByNumber(value);
+            SpriteRenderer.color = ColorExtensions.GetTileColorByNumber(value);
         }
     }
 }
