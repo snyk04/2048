@@ -1,7 +1,7 @@
 ﻿using System;
 using TwentyFortyEight.Common;
 
-namespace TwentyFortyEight.PlayField.Logic
+namespace TwentyFortyEight.Game
 {
     public interface IObjectMerger<T>
     {

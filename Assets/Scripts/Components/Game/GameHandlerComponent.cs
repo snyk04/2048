@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using TwentyFortyEight.PlayField.Logic;
+using UnityEngine;
 
-namespace TwentyFortyEight.PlayField.Logic
+namespace TwentyFortyEight.Game
 {
+    // TODO : Make board size configurable in UI
     public class GameHandlerComponent : MonoBehaviour
     {
         public IGameHandler GameHandler { get; private set; }
@@ -12,7 +14,6 @@ namespace TwentyFortyEight.PlayField.Logic
             GameHandler = new GameHandler();
         }
         
-        // TODO : Make board size configurable in UI
         public void StartGame()
         {
             GameHandler.StartGame(4, 4);

@@ -1,7 +1,8 @@
 ﻿using TwentyFortyEight.Common;
+using TwentyFortyEight.PlayField.Visual;
 using UnityEngine;
 
-namespace TwentyFortyEight.PlayField.Visual
+namespace TwentyFortyEight.Game
 {
     public class GameVisualHandler
     {

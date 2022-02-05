@@ -1,7 +1,8 @@
 ﻿using System;
 using TwentyFortyEight.Common;
+using TwentyFortyEight.PlayField.Logic;
 
-namespace TwentyFortyEight.PlayField.Logic
+namespace TwentyFortyEight.Game
 {
     public class TileMover : IObjectMover
     {

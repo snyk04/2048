@@ -1,7 +1,6 @@
-﻿using TwentyFortyEight.PlayField.Logic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TwentyFortyEight.PlayField.Visual
+namespace TwentyFortyEight.Game
 {
     public class GameVisualHandlerComponent : MonoBehaviour
     {

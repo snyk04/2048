@@ -1,7 +1,6 @@
-﻿using TwentyFortyEight.PlayField.Logic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TwentyFortyEight
+namespace TwentyFortyEight.Game
 {
     public class GameStopHandlerComponent : MonoBehaviour
     {

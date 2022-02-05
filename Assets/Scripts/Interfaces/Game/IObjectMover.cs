@@ -1,7 +1,7 @@
 ﻿using System;
 using TwentyFortyEight.PlayField.Logic;
 
-namespace TwentyFortyEight
+namespace TwentyFortyEight.Game
 {
     public interface IObjectMover
     {

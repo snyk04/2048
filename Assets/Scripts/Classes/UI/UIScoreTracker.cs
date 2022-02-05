@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TwentyFortyEight.Game;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace TwentyFortyEight.UI
@@ -6,6 +7,7 @@ namespace TwentyFortyEight.UI
     public class UIScoreTracker
     {
         private readonly IGameHandler _gameHandler;
+        
         private readonly Text _currentScoreText;
         private readonly Text _bestScoreText;
         private readonly GameObject _scoreInterface;
@@ -25,12 +27,22 @@ namespace TwentyFortyEight.UI
         
         private void Initialize()
         {
-            _gameHandler.ScoreTracker.ValueIncreased += UpdateScore;
+            _gameHandler.CurrentScoreTracker.ValueIncreased += UpdateCurrentScore;
+            _gameHandler.BestScoreTracker.ValueIncreased += UpdateBestScore;
+            
             _scoreInterface.SetActive(true);
+
+            _currentScoreText.text = 0.ToString();
+            _bestScoreText.text = _gameHandler.BestScoreTracker.Value.ToString();
         }
-        private void UpdateScore()
+        
+        private void UpdateCurrentScore(int value)
         {
-            _currentScoreText.text = _gameHandler.ScoreTracker.Value.ToString();
+            _currentScoreText.text = value.ToString();
+        }
+        private void UpdateBestScore(int value)
+        {
+            _bestScoreText.text = value.ToString();
         }
     }
 }

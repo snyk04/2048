@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
-namespace TwentyFortyEight
+namespace TwentyFortyEight.Game
 {
     public class GameStopHandler
     {
         private readonly IGameHandler _gameHandler;
+        
         private readonly GameObject _victoryInterface;
         private readonly GameObject _gameOverInterface;
         

@@ -2,7 +2,7 @@
 using TwentyFortyEight.Common;
 using TwentyFortyEight.PlayField.Logic;
 
-namespace TwentyFortyEight
+namespace TwentyFortyEight.Game
 {
     public interface IGameHandler
     {
@@ -12,9 +12,10 @@ namespace TwentyFortyEight
         IObjectMerger<int> TileMerger { get; }
         IObjectMover TileMover { get; }
         IObjectSpawner<IContainer<int>> TileSpawner { get; }
-        ITracker<int> ScoreTracker { get; }
-        
-        
+        IAddableValueTracker<int> CurrentScoreTracker { get; }
+        IBestValueTracker<int> BestScoreTracker { get; }
+
+
         void StartGame(int amountOfRows, int amountOfColumns);
         void Move(Direction direction);
     }

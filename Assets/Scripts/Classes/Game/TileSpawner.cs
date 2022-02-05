@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using TwentyFortyEight.Common;
+using TwentyFortyEight.PlayField.Logic;
 
-namespace TwentyFortyEight.PlayField.Logic
+namespace TwentyFortyEight.Game
 {
     public class TileSpawner : IObjectSpawner<IContainer<int>>
     {
