@@ -12,6 +12,10 @@ namespace TwentyFortyEight.GameHandling
         {
             GameHandler = new GameHandler();
         }
+        private void Start()
+        {
+            StartGame();
+        }
         
         public void StartGame()
         {

@@ -9,7 +9,6 @@ namespace TwentyFortyEight.UI
         [SerializeField] private GameHandlerComponent _gameHandler;
         [SerializeField] private Text _currentScoreText;
         [SerializeField] private Text _bestScoreText;
-        [SerializeField] private GameObject _scoreInterface;
 
         
         public UIScoreTracker UIScoreTracker { get; private set; }
@@ -17,7 +16,7 @@ namespace TwentyFortyEight.UI
         
         private void Awake()
         {
-            UIScoreTracker = new UIScoreTracker(_gameHandler.GameHandler, _currentScoreText, _bestScoreText, _scoreInterface);
+            UIScoreTracker = new UIScoreTracker(_gameHandler.GameHandler, _currentScoreText, _bestScoreText);
         }
     }
 }
