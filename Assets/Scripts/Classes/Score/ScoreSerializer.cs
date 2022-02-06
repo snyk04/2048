@@ -9,6 +9,7 @@ namespace TwentyFortyEight.Score
     {
         private const string FileName = "BestScore.xml";
         
+        
         public void Serialize(int value)
         {
             var serializer = new XmlSerializer(typeof(int));
