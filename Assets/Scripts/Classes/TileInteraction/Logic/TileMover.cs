@@ -78,6 +78,7 @@ namespace TwentyFortyEight.TileInteraction.Logic
         {
             for (int i = 0; i < board.GetLength(0); i++)
             {
+                bool isMergeMadeOnThisMove = false;
                 int firstFreePosition = 0;
                 (int, int) lastTileCoordinates = (-1, -1);
                 for (int j = 0; j < board.GetLength(1); j++)
@@ -89,10 +90,12 @@ namespace TwentyFortyEight.TileInteraction.Logic
 
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (i, j)
-                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[i, j].Value))
+                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[i, j].Value)
+                        && !isMergeMadeOnThisMove)
                     {
                         _tileMerger.Merge(board, lastTileCoordinates, (i, j));
                         anyMovePerformed = true;
+                        isMergeMadeOnThisMove = true;
                         continue;
                     }
                     
@@ -114,6 +117,7 @@ namespace TwentyFortyEight.TileInteraction.Logic
         {
             for (int i = 0; i < board.GetLength(0); i++)
             {
+                bool isMergeMadeOnThisMove = false;
                 int firstFreePosition = board.GetLength(1) - 1;
                 (int, int) lastTileCoordinates = (-1, -1);
                 for (int j = board.GetLength(1) - 1; j >= 0; j--)
@@ -125,10 +129,12 @@ namespace TwentyFortyEight.TileInteraction.Logic
 
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (i, j)
-                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[i, j].Value))
+                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[i, j].Value)
+                        && !isMergeMadeOnThisMove)
                     {
                         _tileMerger.Merge(board, lastTileCoordinates, (i, j));
                         anyMovePerformed = true;
+                        isMergeMadeOnThisMove = true;
                         continue;
                     }
                     
@@ -150,6 +156,7 @@ namespace TwentyFortyEight.TileInteraction.Logic
         {
             for (int i = 0; i < board.GetLength(1); i++)
             {
+                bool isMergeMadeOnThisMove = false;
                 int firstFreePosition = board.GetLength(0) - 1;
                 (int, int) lastTileCoordinates = (-1, -1);
                 for (int j = board.GetLength(0) - 1; j >= 0; j--)
@@ -161,10 +168,12 @@ namespace TwentyFortyEight.TileInteraction.Logic
 
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (j, i)
-                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[j, i].Value))
+                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[j, i].Value)
+                        && !isMergeMadeOnThisMove)
                     {
                         _tileMerger.Merge(board, lastTileCoordinates, (j, i));
                         anyMovePerformed = true;
+                        isMergeMadeOnThisMove = true;
                         continue;
                     }
                     
@@ -186,6 +195,7 @@ namespace TwentyFortyEight.TileInteraction.Logic
         {
             for (int i = 0; i < board.GetLength(0); i++)
             {
+                bool isMergeMadeOnThisMove = false;
                 int firstFreePosition = 0;
                 (int, int) lastTileCoordinates = (-1, -1);
                 for (int j = 0; j < board.GetLength(1); j++)
@@ -197,10 +207,12 @@ namespace TwentyFortyEight.TileInteraction.Logic
 
                     if (lastTileCoordinates != (-1, -1) 
                         && lastTileCoordinates != (j, i)
-                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[j, i].Value))
+                        && AreTilesMergeable(board[lastTileCoordinates].Value, board[j, i].Value)
+                        && !isMergeMadeOnThisMove)
                     {
                         _tileMerger.Merge(board, lastTileCoordinates, (j, i));
                         anyMovePerformed = true;
+                        isMergeMadeOnThisMove = true;
                         continue;
                     }
                     
