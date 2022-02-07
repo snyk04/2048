@@ -34,13 +34,13 @@ namespace TwentyFortyEight.TileInteraction.Visual
                 cellVisual.Transform
                 ).GetComponent<TileVisualComponent>().TileVisual;
             
+            tileVisual.CurrentPosition = tileVisual.Transform.position;
+            cellVisual.Value = tileVisual;
+            tileVisual.UpdateValue(tile.Value);
             tileVisual.Transform.DOPunchScale(new Vector3(PunchScale, PunchScale, PunchScale),
                 PunchDuration,
                 PunchVibrato,
                 PunchElasticity);
-            cellVisual.Value = tileVisual;
-            
-            tileVisual.UpdateValue(tile.Value);
         }
     }
 }

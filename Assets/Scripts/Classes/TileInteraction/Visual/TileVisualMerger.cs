@@ -7,7 +7,7 @@ namespace TwentyFortyEight.TileInteraction.Visual
 {
     public class TileVisualMerger
     {
-        private const float MoveDuration = 0.1f;
+        private const float MergeDuration = 0.1f;
 
         private readonly IIndexable<CellVisual> _boardVisual;
 
@@ -28,10 +28,10 @@ namespace TwentyFortyEight.TileInteraction.Visual
 
             mergedTile.SpriteRenderer.sortingOrder -= 1;
             mergedTile.Text.sortingOrder -= 1;
-            mergedTile.Transform.DOMove(tileToMergeInto.Transform.position, MoveDuration);
-            Object.Destroy(mergedTile.Text, MoveDuration);
-            Object.Destroy(mergedTile.SpriteRenderer, MoveDuration);
-            Object.Destroy(mergedTile.Transform.gameObject, MoveDuration * 2);
+            mergedTile.Transform.DOMove(tileToMergeInto.CurrentPosition, MergeDuration);
+            Object.Destroy(mergedTile.Text, MergeDuration);
+            Object.Destroy(mergedTile.SpriteRenderer, MergeDuration);
+            Object.Destroy(mergedTile.Transform.gameObject, MergeDuration * 2);
         }
     }
 }

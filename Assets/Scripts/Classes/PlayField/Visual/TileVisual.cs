@@ -9,6 +9,8 @@ namespace TwentyFortyEight.PlayField.Visual
         public SpriteRenderer SpriteRenderer { get; }
         public TextMeshPro Text { get; }
         
+        public Vector3 CurrentPosition { get; set; }
+        
         
         public TileVisual(Transform transform, TextMeshPro text, SpriteRenderer spriteRenderer)
         {

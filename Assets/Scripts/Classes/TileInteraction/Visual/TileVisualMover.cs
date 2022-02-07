@@ -26,6 +26,7 @@ namespace TwentyFortyEight.TileInteraction.Visual
             cellToMoveTo.Value = tileToMove;
             cellToMoveFrom.Value = null;
 
+            tileToMove.CurrentPosition = cellToMoveTo.Transform.position;
             tileToMove.Transform.parent = cellToMoveTo.Transform;
             tileToMove.Transform.DOMove(cellToMoveTo.Transform.position, MoveDuration);
         }
