@@ -9,4 +9,4 @@ Follow the below instructions to play Quoridor:
 4. Execute 2048.exe.
 
 ## Screenshots
-[Screenshot 1](https://github.com/snyk04/2048/blob/main/Screenshot.png)
+![](https://github.com/snyk04/2048/blob/main/Screenshot.png)
