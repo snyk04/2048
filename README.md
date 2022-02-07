@@ -10,5 +10,7 @@ Follow the below instructions to play Quoridor:
 
 ## Screenshots
 ![](https://github.com/snyk04/2048/blob/main/Screenshots/Screenshot 1.png)
+
 ![](https://github.com/snyk04/2048/blob/main/Screenshots/Screenshot 2.png)
+
 ![](https://github.com/snyk04/2048/blob/main/Screenshots/Screenshot 3.png)
